@@ -96,8 +96,12 @@ UPDATE `super`.`produtos` SET `idMarca` = '3' WHERE (`idProduto` = '5');
 UPDATE `super`.`produtos` SET `idMarca` = '3' WHERE (`idProduto` = '6');
 UPDATE `super`.`produtos` SET `idMarca` = '3' WHERE (`idProduto` = '7');
 
+
 SELECT Produtos.nomeProduto, Produtos.valorVendaProduto, Marca.nomeMarca 
 FROM Produtos, Marca WHERE Produtos.idMarca = Marca.idMarca;
+SELECT P.nomeProduto, P.valorVendaProduto, M.nomeMarca 
+FROM Produtos AS P, Marca AS M WHERE P.idMarca = M.idMarca;
+
 
 SELECT P.nomeProduto, M.nomeMarca, F.nomeFornecedor, P.valorVendaProduto
 FROM Produtos AS P, Marca AS M, Fornecedor AS F 
@@ -108,4 +112,26 @@ FROM Produtos AS P JOIN Marca AS M ON P.idMarca = M.idMarca;
 
 SELECT P.nomeProduto, P.valorVendaProduto, M.nomeMarca
 FROM Produtos AS P INNER JOIN Marca AS M ON P.idMarca=M.idMarca
-WHERE P.categoriaProduto='Mercearia' ORDER BY P.nomeProduto
+WHERE P.categoriaProduto='Mercearia' ORDER BY P.nomeProduto;
+
+CREATE TABLE Funcionario (
+idFuncionario int auto_increment,
+nomeFuncionario varchar(200),
+cpfFuncionario varchar(11),
+cidadeFuncionario varchar(200),
+PRIMARY KEY(idFuncionario)
+);
+
+INSERT INTO Funcionario (nomeFuncionario,cpfFuncionario,cidadeFuncionario) VALUES
+('João dos Santos','10000000001','São Paulo'),
+('Maria da Silva','20000000002','Rio de Janeiro'),
+('Ana Maria','30000000003','Brasília'),
+('Brasil Alimentos','40000000004','Cuiabá');
+
+SELECT nomeFuncionario FROM Funcionario UNION 
+SELECT nomeFornecedor FROM Fornecedor ORDER BY nomeFuncionario;
+
+SELECT nomeFuncionario FROM Funcionario UNION ALL SELECT 
+nomeFornecedor FROM Fornecedor ORDER BY nomeFuncionario;
+
+
