@@ -8,16 +8,15 @@ CREATE TABLE `usuario` (
 	nome VARCHAR(40),
 	login VARCHAR(20),
 	senha VARCHAR(20),
-    estoqueAlimento_idEstoqueAlimento INT,
     CONSTRAINT tipo_usuario CHECK (tipo IN ('Parent', 'Child'))
 );
 
 CREATE TABLE `secaoAlimento` (
 	idSecao INT PRIMARY KEY AUTO_INCREMENT,
 	nomeSecao VARCHAR(20) NOT NULL,
-    medida VARCHAR(20) NOT NULL,
+    tipoMedida VARCHAR(20) NOT NULL,
     obsSecaoAlimento VARCHAR(200),
-    CONSTRAINT medida_alimento CHECK (medida IN ('peso', 'volume', 'unidade'))
+    CONSTRAINT medida_alimento CHECK (tipoMedida IN ('peso', 'volume', 'unidade'))
 );
 CREATE TABLE `alimento` (
 	idAlimento INT PRIMARY KEY AUTO_INCREMENT,
@@ -41,7 +40,7 @@ CREATE TABLE `estoqueAlimento` (
     FOREIGN KEY (alimento_idAlimento) REFERENCES alimento(idAlimento),
     FOREIGN KEY (secaoAlimento_idSecao) REFERENCES secaoAlimento(idSecao)
 );
-CREATE TABLE usuario_has_estoqueAlimento (
+CREATE TABLE `usuario_has_estoqueAlimento` (
 	estoqueAlimento_idEstoqueAlimento INT NOT NULL,
     usuario_idUsuario INT NOT NULL,
 	FOREIGN KEY (estoqueAlimento_idEstoqueAlimento) REFERENCES estoqueAlimento(idEstoqueAlimento),
@@ -52,9 +51,9 @@ CREATE TABLE usuario_has_estoqueAlimento (
 CREATE TABLE `secaoLimpeza` (
 	idSecao INT PRIMARY KEY AUTO_INCREMENT,
 	nomeSecao VARCHAR(20) NOT NULL,
-    medida VARCHAR(20) NOT NULL,
+    tipoMedida VARCHAR(20) NOT NULL,
     obsSecaoLimpeza VARCHAR(200),
-    CONSTRAINT medida_limpeza CHECK (medida IN ('peso', 'volume', 'unidade'))
+    CONSTRAINT medida_limpeza CHECK (tipoMedida IN ('peso', 'volume', 'unidade'))
 );
 CREATE TABLE `limpeza` (
 	idLimpeza INT PRIMARY KEY AUTO_INCREMENT,
@@ -78,7 +77,7 @@ CREATE TABLE `estoqueLimpeza` (
     FOREIGN KEY (limpeza_idLimpeza) REFERENCES limpeza(idLimpeza),
     FOREIGN KEY (secaoLimpeza_idSecao) REFERENCES secaoLimpeza(idSecao)
 );
-CREATE TABLE usuario_has_estoqueLimpeza (
+CREATE TABLE `usuario_has_estoqueLimpeza` (
 	estoqueLimpeza_idEstoqueLimpeza INT NOT NULL,
     usuario_idUsuario INT NOT NULL,
 	FOREIGN KEY (estoqueLimpeza_idEstoqueLimpeza ) REFERENCES estoqueLimpeza(idEstoqueLimpeza),
@@ -89,9 +88,9 @@ CREATE TABLE usuario_has_estoqueLimpeza (
 CREATE TABLE `secaoPS` (
 	idSecao INT PRIMARY KEY AUTO_INCREMENT,
 	nomeSecao VARCHAR(20) NOT NULL,
-    medida VARCHAR(20) NOT NULL,
+    tipoMedida VARCHAR(20) NOT NULL,
     obsSecaoPS VARCHAR(200),
-    CONSTRAINT medida_PS CHECK (medida IN ('unidade'))
+    CONSTRAINT medida_PS CHECK (tipoMedida IN ('unidade'))
 );
 CREATE TABLE `PS` (
 	idPS INT PRIMARY KEY AUTO_INCREMENT,
@@ -115,7 +114,7 @@ CREATE TABLE `estoquePS` (
     FOREIGN KEY (PS_idPS) REFERENCES PS(idPS),
     FOREIGN KEY (secaoPS_idSecao) REFERENCES secaoPS(idSecao)
 );
-CREATE TABLE usuario_has_estoquePS (
+CREATE TABLE `usuario_has_estoquePS` (
 	estoquePS_idEstoquePS INT NOT NULL,
     usuario_idUsuario INT NOT NULL,
 	FOREIGN KEY (estoquePS_idEstoquePS) REFERENCES estoquePS(idEstoquePS),
@@ -126,20 +125,20 @@ CREATE TABLE usuario_has_estoquePS (
 CREATE TABLE `secaoBOB` (
 	idSecao INT PRIMARY KEY AUTO_INCREMENT,
 	nomeSecao VARCHAR(20) NOT NULL,
-    medida VARCHAR(20) NOT NULL,
+    tipoMedida VARCHAR(20) NOT NULL,
     obsSecaoBOB VARCHAR(200),
-    CONSTRAINT medida_BOB CHECK (medida IN ('unidade'))
+    CONSTRAINT medida_BOB CHECK (tipoMedida IN ('unidade'))
 );
-CREATE TABLE `BOB` (
-	idBOB INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE `itemBOB` (
+	idItemBOB INT PRIMARY KEY AUTO_INCREMENT,
     secaoBOB_idSecao INT NOT NULL,
-	nomeBOB VARCHAR(40) NOT NULL, 
+	itemBOB VARCHAR(40) NOT NULL, 
     obsBOB VARCHAR(200),
     FOREIGN KEY (secaoBOB_idSecao) REFERENCES secaoBOB(idSecao)
 );
 CREATE TABLE `estoqueBOB` (
 	idEstoqueBOB INT PRIMARY KEY AUTO_INCREMENT,
-    BOB_idBOB INT NOT NULL,
+    itemBOB_idItemBOB INT NOT NULL,
     secaoBOB_idSecao INT NOT NULL,
 	peso FLOAT,
     volume FLOAT,
@@ -149,12 +148,14 @@ CREATE TABLE `estoqueBOB` (
 	obsEstoqueBOB VARCHAR(200),
     status CHAR(8) NOT NULL,
     CONSTRAINT status_BOB CHECK (status IN ('Ativo', 'Excluido')),
-    FOREIGN KEY (BOB_idBOB) REFERENCES BOB(idBOB),
+    FOREIGN KEY (itemBOB_idItemBOB) REFERENCES itemBOB(idItemBOB),
     FOREIGN KEY (secaoBOB_idSecao) REFERENCES secaoBOB(idSecao)
 );
-CREATE TABLE usuario_has_estoqueBOB (
+CREATE TABLE `usuario_has_estoqueBOB` (
 	estoqueBOB_idEstoqueBOB INT NOT NULL,
     usuario_idUsuario INT NOT NULL,
 	FOREIGN KEY (estoqueBOB_idEstoqueBOB) REFERENCES estoqueBOB(idEstoqueBOB),
     FOREIGN KEY (usuario_idUsuario) REFERENCES usuario(idUsuario)
 );
+
+
