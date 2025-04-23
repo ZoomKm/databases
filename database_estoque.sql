@@ -1,4 +1,5 @@
-drop database estoque;
+DROP DATABASE ESTOQUE;
+
 CREATE DATABASE	estoque;
 USE estoque;
 
@@ -55,16 +56,16 @@ CREATE TABLE `secaoLimpeza` (
     obsSecaoLimpeza VARCHAR(200),
     CONSTRAINT medida_limpeza CHECK (tipoMedida IN ('peso', 'volume', 'unidade'))
 );
-CREATE TABLE `limpeza` (
-	idLimpeza INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE `produtolimpeza` (
+	idProdutoLimpeza INT PRIMARY KEY AUTO_INCREMENT,
     secaoLimpeza_idSecao INT NOT NULL,
-	nomeLimpeza VARCHAR(40) NOT NULL, 
+	produtoLimpeza VARCHAR(40) NOT NULL, 
     obsLimpeza VARCHAR(200),
     FOREIGN KEY (secaoLimpeza_idSecao) REFERENCES secaoLimpeza(idSecao)
 );
 CREATE TABLE `estoqueLimpeza` (
 	idEstoqueLimpeza INT PRIMARY KEY AUTO_INCREMENT,
-    limpeza_idLimpeza INT NOT NULL,
+    produtoLimpeza_idProdutoLimpeza INT NOT NULL,
     secaoLimpeza_idSecao INT NOT NULL,
 	peso FLOAT,
     volume FLOAT,
@@ -74,7 +75,7 @@ CREATE TABLE `estoqueLimpeza` (
 	obsEstoqueLimpeza VARCHAR(200),
     status CHAR(8) NOT NULL,
     CONSTRAINT status_limpeza CHECK (status IN ('Ativo', 'Excluido')),
-    FOREIGN KEY (limpeza_idLimpeza) REFERENCES limpeza(idLimpeza),
+    FOREIGN KEY (produtoLimpeza_idProdutoLimpeza) REFERENCES produtolimpeza(idProdutoLimpeza),
     FOREIGN KEY (secaoLimpeza_idSecao) REFERENCES secaoLimpeza(idSecao)
 );
 CREATE TABLE `usuario_has_estoqueLimpeza` (
@@ -159,3 +160,21 @@ CREATE TABLE `usuario_has_estoqueBOB` (
 );
 
 
+CREATE TABLE `secaoDica` (
+	idSecao INT PRIMARY KEY AUTO_INCREMENT,
+	nomeSecao VARCHAR(20) NOT NULL,
+    obsSecaoDica VARCHAR(400)
+);
+CREATE TABLE `dica` (
+	idDica INT PRIMARY KEY AUTO_INCREMENT,
+    secaoDica_idSecao INT NOT NULL,
+    tituloDica VARCHAR(70) NOT NULL,
+    resposta TEXT NOT NULL,
+    FOREIGN KEY (secaoDica_idSecao) REFERENCES secaoDica(idSecao)
+);
+CREATE TABLE `usuario_has_secaoDicas` (
+	dica_idDica INT NOT NULL,
+    usuario_idUsuario INT NOT NULL,
+	FOREIGN KEY (dica_idDica) REFERENCES dica(idDica),
+    FOREIGN KEY (usuario_idUsuario) REFERENCES usuario(idUsuario)
+);

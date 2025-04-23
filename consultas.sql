@@ -1,4 +1,4 @@
-CREATE DATABASE super;
+
 
 CREATE TABLE Produtos(
 idProduto INT NOT NULL AUTO_INCREMENT,
@@ -133,5 +133,25 @@ SELECT nomeFornecedor FROM Fornecedor ORDER BY nomeFuncionario;
 
 SELECT nomeFuncionario FROM Funcionario UNION ALL SELECT 
 nomeFornecedor FROM Fornecedor ORDER BY nomeFuncionario;
+
+CREATE TABLE Funcionario (
+idFuncionario int(11) auto_increment,
+nomeFuncionario varchar(200),
+cpfFuncionario varchar(11),
+cidadeFuncionario varchar(200),
+PRIMARY KEY(idFuncionario)
+);
+
+INSERT INTO Funcionario (nomeFuncionario,cpfFuncionario,cidadeFuncionario) VALUES
+('João dos Santos','10000000001','São Paulo'),
+('Maria da Silva','20000000002','Rio de Janeiro'),
+('Ana Maria','30000000003','Brasília'),
+('Brasil Alimentos','40000000004','Cuiabá');
+
+
+SELECT nomeFuncionario FROM Funcionario 
+UNION
+SELECT nomeFornecedor FROM Fornecedor
+ORDER BY nomeFuncionario;
 
 
