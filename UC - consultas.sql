@@ -1,5 +1,3 @@
-
-
 CREATE TABLE Produtos(
 idProduto INT NOT NULL AUTO_INCREMENT,
 nomeProduto VARCHAR(200),
