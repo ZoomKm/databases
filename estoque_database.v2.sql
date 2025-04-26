@@ -1,7 +1,5 @@
-DROP DATABASE `estoque`;
-
-CREATE DATABASE	`estoque`;
-USE `estoque`;
+CREATE DATABASE	`estoque_sos`;
+USE `estoque_sos`;
 
 CREATE TABLE `usuario` (
 	idUsuario INT PRIMARY KEY AUTO_INCREMENT,
@@ -45,8 +43,7 @@ CREATE TABLE `estoque` (
 	dataValidade DATE NOT NULL,
 	dataEstoque DATE NOT NULL,
 	obsEstoque VARCHAR(200),
-    status CHAR(8) NOT NULL,
-    CONSTRAINT status_valido CHECK (status IN ('Ativo', 'Excluido')),
+    status BOOLEAN NOT NULL,
     FOREIGN KEY (produto_idProduto) REFERENCES produto(idProduto)
 );
 

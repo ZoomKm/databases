@@ -1,7 +1,7 @@
-USE estoque;
+USE estoque_sos;
 
 
-INSERT INTO `   ` (tipoUsuario, nome, email, senha) VALUES
+INSERT INTO `usuario` (tipoUsuario, nome, email, senha) VALUES
 ('P', 'Luis Henrique', 'luishlr@outlook.com', 'qwert54321'),
 ('C', 'Winter Snow', 'winter.snow@live.com', '1qazxsw2'),
 ('C', 'Summer Hail', 'summer.hail@live.com', ',ku76yjm'),
@@ -95,12 +95,12 @@ problemas financeiros que podem aparecer, ter um bom suprimento de comida vai aj
 ('3', 'Como fazer uma abrigo?', 
 '','2025-03-12');
 
-
-SELECT * FROM `usuario`;
-SELECT * FROM `secaoproduto`;
-SELECT * FROM `subsecao`;
-SELECT * FROM `produto`;
 SELECT * FROM `estoque`;
-SELECT * FROM `secaodica`;
-SELECT * FROM `dica`;
+INSERT INTO `estoque` (produto_idProduto, peso, volume, unidade, dataValidade, dataEstoque, obsEstoque, status) VALUES
+('1', 4.5, null, null, '2026-06-07', '2025-04-07', 'Estocado em embalagem padrão.', '1'),
+('2', 4.5, null, null, '2025-07-25', '2025-04-25', 'Estocado em embalagem padrão.', '1'),
+('4', 4.0, null, null, '2025-11-07', '2025-04-11', 'Estocado em embalagem padrão.', '1'),
+('5', 2, null, null, '2026-04-20', '2025-04-20', 'Estocado em embalagem padrão.', '1'),
+('7', 3, null, null, '2026-09-20', '2025-04-20', 'Estocado em embalagem padrão.', '1')
 
+;
