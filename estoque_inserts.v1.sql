@@ -92,15 +92,19 @@ problemas financeiros que podem aparecer, ter um bom suprimento de comida vai aj
  '','2025-03-10'),
 ('3', 'Como usar uma bússola?', 
 '','2025-03-12'),
-('3', 'Como fazer uma abrigo?', 
+('3', 'Como fazer um abrigo?', 
 '','2025-03-12');
 
-SELECT * FROM `estoque`;
+SELECT * FROM `produto`;
 INSERT INTO `estoque` (produto_idProduto, peso, volume, unidade, dataValidade, dataEstoque, obsEstoque, status) VALUES
 ('1', 4.5, null, null, '2026-06-07', '2025-04-07', 'Estocado em embalagem padrão.', '1'),
 ('2', 4.5, null, null, '2025-07-25', '2025-04-25', 'Estocado em embalagem padrão.', '1'),
 ('4', 4.0, null, null, '2025-11-07', '2025-04-11', 'Estocado em embalagem padrão.', '1'),
 ('5', 2, null, null, '2026-04-20', '2025-04-20', 'Estocado em embalagem padrão.', '1'),
-('7', 3, null, null, '2026-09-20', '2025-04-20', 'Estocado em embalagem padrão.', '1')
-
-;
+('7', 3, null, null, '2026-09-20', '2025-04-20', 'Estocado em embalagem padrão.', '1'),
+('20', 7, null, null, '2027-09-20', '2025-04-7', null, '1'),
+('21', 4, null, null, '2026-05-20', '2025-04-02', null, '1'),
+('22', 2, null, null, '2027-03-04', '2025-04-17', null, '1'),
+('25', 5, null, null, '2026-05-15', '2025-04-2', null, '1'),
+('26', 2, null, null, '2027-02-05', '2025-04-20', null, '1'),
+('31', 7, null, null, '2026-03-7', '2025-04-20', null, '1');
