@@ -1,4 +1,4 @@
-USE estoque_sos;
+USE `estoque_sos`;
 
 
 INSERT INTO `usuario` (tipoUsuario, nome, email, senha) VALUES
@@ -95,7 +95,6 @@ problemas financeiros que podem aparecer, ter um bom suprimento de comida vai aj
 ('3', 'Como fazer um abrigo?', 
 '','2025-03-12');
 
-SELECT * FROM `produto`;
 INSERT INTO `estoque` (produto_idProduto, peso, volume, unidade, dataValidade, dataEstoque, obsEstoque, status) VALUES
 ('1', 4.5, null, null, '2026-06-07', '2025-04-07', 'Estocado em embalagem padrão.', '1'),
 ('2', 4.5, null, null, '2025-07-25', '2025-04-25', 'Estocado em embalagem padrão.', '1'),
@@ -108,3 +107,13 @@ INSERT INTO `estoque` (produto_idProduto, peso, volume, unidade, dataValidade, d
 ('25', 5, null, null, '2026-05-15', '2025-04-2', null, '1'),
 ('26', 2, null, null, '2027-02-05', '2025-04-20', null, '1'),
 ('31', 7, null, null, '2026-03-7', '2025-04-20', null, '1');
+
+
+INSERT INTO `usuario_has_secao` (usuario_idUsuario, secaoProduto_idSecaoProduto, secaoDica_idSecaoDica) VALUES
+(1, 1, 1), (1, 2, 2), (1, 3, 3), (1, 4, 1), 
+(2, 1, 1), (2, 1, 2), (2, 4, 3),
+(3, 1, 1), (3, 1, 2), (3, 4, 3), 
+(4, 1, 1), (4, 1, 2), (4, 4, 3);
+
+
+
