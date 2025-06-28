@@ -1,5 +1,7 @@
+drop DATABASE	`estoque_sos`;
 CREATE DATABASE	`estoque_sos`;
 USE `estoque_sos`;
+
 
 CREATE TABLE `usuario` (
 	idUsuario INT PRIMARY KEY AUTO_INCREMENT,
@@ -10,27 +12,28 @@ CREATE TABLE `usuario` (
     CONSTRAINT tipoUsuario CHECK (tipoUsuario IN ('P', 'C'))
 );
 
+
 CREATE TABLE `secaoProduto` (
 	idSecaoProduto INT PRIMARY KEY AUTO_INCREMENT,
-	nomeSecaoProduto VARCHAR(20) NOT NULL,
+	tituloSecaoProduto VARCHAR(20) NOT NULL,
     obsSecaoProduto VARCHAR(200)
 );
 
-CREATE TABLE `subSecao` (
-	idSubSecao INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE `subSecaoProduto` (
+	idSubSecaoProduto INT PRIMARY KEY AUTO_INCREMENT,
     secaoProduto_idSecaoProduto INT NOT NULL,
-	nomeSubSecao VARCHAR(20) NOT NULL,
+	tituloSubSecao VARCHAR(20) NOT NULL,
     obsSubSecao VARCHAR(200),
     FOREIGN KEY (secaoProduto_idSecaoProduto) REFERENCES secaoProduto(idSecaoProduto)
 );
 
 CREATE TABLE `produto` (
 	idProduto INT PRIMARY KEY AUTO_INCREMENT,
-    subSecao_idSubSecao INT NOT NULL,
+    subSecaoProduto_idSubSecaoProduto INT NOT NULL,
 	nomeProduto VARCHAR(40) NOT NULL,
     tipoMedida VARCHAR(7) NOT NULL,
     obsProduto VARCHAR(200),
-    FOREIGN KEY (subSecao_idSubSecao) REFERENCES subSecao(idSubSecao),
+    FOREIGN KEY (subSecaoProduto_idSubSecaoProduto) REFERENCES subSecaoProduto(idSubSecaoProduto),
     CONSTRAINT tipoMedida CHECK (tipoMedida IN ('peso', 'volume', 'unidade'))
 );
 
@@ -47,20 +50,32 @@ CREATE TABLE `estoque` (
     FOREIGN KEY (produto_idProduto) REFERENCES produto(idProduto)
 );
 
+
 CREATE TABLE `secaoDica` (
 	idSecaoDica INT PRIMARY KEY AUTO_INCREMENT,
-	nomeSecaoDica VARCHAR(20) NOT NULL,
+	tituloSecaoDica VARCHAR(20) NOT NULL,
     obsSecaoDica VARCHAR(400)
 );
 
+
+CREATE TABLE `subSecaoDica` (
+	idSubSecaoDica INT PRIMARY KEY AUTO_INCREMENT,
+    secaoDica_idSecaoDica INT NOT NULL,
+	tituloSubSecao VARCHAR(20) NOT NULL,
+    obsSubSecao VARCHAR(200),
+    FOREIGN KEY (secaoDica_idSecaoDica) REFERENCES secaoDica(idSecaoDica)
+);
+
+
 CREATE TABLE `dica` (
 	idDica INT PRIMARY KEY AUTO_INCREMENT,
-    secaoDica_idSecaoDica INT NOT NULL,
+    subSecaoDica_idSubSecaoDica INT NOT NULL,
     tituloDica VARCHAR(70) NOT NULL,
     descricao TEXT NOT NULL,
     dataCriacao DATE NOT NULL,
-    FOREIGN KEY (secaoDica_idSecaoDica) REFERENCES secaoDica(idSecaoDica)
+    FOREIGN KEY (subSecaoDica_idSubSecaoDica) REFERENCES subSecaoDica(idSubSecaoDica)
 );
+
 
 CREATE TABLE `usuario_has_secao` (
 	usuario_idUsuario INT NOT NULL,

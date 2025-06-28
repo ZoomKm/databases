@@ -1,6 +1,5 @@
 USE `estoque_sos`;
 
-
 INSERT INTO `usuario` (tipoUsuario, nome, email, senha) VALUES
 ('P', 'Luis Henrique', 'luishlr@outlook.com', 'qwert54321'),
 ('C', 'Winter Snow', 'winter.snow@live.com', '1qazxsw2'),
@@ -9,14 +8,14 @@ INSERT INTO `usuario` (tipoUsuario, nome, email, senha) VALUES
 ('P', 'Skyscraper', 'sky.scraper@live.com', '3edcvfr4');
 
 
-INSERT INTO `secaoproduto` (nomeSecaoProduto, obsSecaoProduto) VALUES 
+INSERT INTO `secaoProduto` (tituloSecaoProduto, obsSecaoProduto) VALUES 
 ('Alimento', 'Gerenciar o estoque de alimentos (Grãos, Enlatados, Embalados, Líquidos e Outros)'),
 ('Limpeza', 'Gerenciar o estoque de produtos de limpeza (Pessoal, Sólidos, Líquidos e Outros)'),
 ('Primeiros socorros', 'Gerenciar o estoque de produtos de primeiros socorros e outros remédios (Curativos, Analgésicos, Pomadas, Uso contínuo e Outros) '),
 ('BOB', 'Gerenciar o os itens armazenados em Bug Out Bag’s (Comida, Ferramentas, Abrigo, Primeiros socorros e Outros)');
 
 
-INSERT INTO `subsecao` (secaoProduto_idSecaoProduto, nomeSubSecao, obsSubSecao) VALUES
+INSERT INTO `subSecaoProduto` (secaoProduto_idSecaoProduto, tituloSubSecao, obsSubSecao) VALUES
 ('1', 'Básicos', 'Alimentos estocados em embalagens padrão grande de 4,5L'),
 ('1', 'Enlatados', 'Produtos enlatados em suas embalagens originais'),
 ('1', 'Embalados', 'Produtos embalados em suas embalagens originais'),
@@ -37,7 +36,7 @@ INSERT INTO `subsecao` (secaoProduto_idSecaoProduto, nomeSubSecao, obsSubSecao) 
 ('4', 'Outros', 'Outos produtos esssencias numa BOB');
 
 
-INSERT INTO `produto` (subSecao_idSubSecao, nomeProduto, tipoMedida, obsProduto) VALUES
+INSERT INTO `produto` (subSecaoProduto_idSubSecaoProduto, nomeProduto, tipoMedida, obsProduto) VALUES
 ('1', 'Arroz', 'peso', 'Expor durante 3 horas ao sol antes de estocar.'),
 ('1', 'Feijão', 'peso', 'Estocar por no máximo 4 meses.'), ('1', 'Grão de Bico', 'peso', NULL), 
 ('1', 'Lentilha', 'peso', NULL), ('1', 'Aveia', 'peso', NULL), ('1', 'Farinha de Trigo', 'peso', NULL),
@@ -63,37 +62,7 @@ INSERT INTO `produto` (subSecao_idSubSecao, nomeProduto, tipoMedida, obsProduto)
 ('16', 'Roupa', 'unidade', NULL), ('16', 'Corda 25m', 'unidade', NULL), ('17', 'Doralgina', 'unidade', NULL),
 ('18', 'Creme dental', 'peso', NULL), ('18', 'Escova', 'unidade', NULL),  ('18', 'Papel higiênico', 'unidade', NULL);
 
-INSERT INTO `secaodica` (nomeSecaoDica, obsSecaoDica) VALUES
-('Estocagem', 'Dicas sobre como armazenar alimentos e quais os principais alimentos a serem armazenados'),
-('Primeiros socorros', 'Dicas sobre primeiros socorros básicos'), ('Outras', 'Outros assuntos variados.');
 
-INSERT INTO `dica` (secaoDica_idSecaoDica, tituloDica, descricao, dataCriacao) VALUES
-('1', 'Por que estocar comida?', 
-'1. Não ter um estoque de comida e água pode tornar até um desastre de pequenas proporções (como uma tempestade ou falta de energia) 
-em uma situação potencialmente ameaçadora à vida. Ter comida guardada pode te ajudar a controlar a situação no conforto e proteção de sua casa.
-Pessoas agem de maneira estúpida durante desastres e o último lugar que você quer estar é no meio do mercado lutando pela última garrafa de água.
-2. Em uma situação de desastre (dependendo de sua natureza) haverão momentos onde será impossível obter comida. 
-Isso pode acontecer por inúmeras razões como doenças, clima adverso ou a necessidade de se esconder por um tempo. 
-Ter um estoque de comida nesse tipo de situação pode assegurar sua sobrevivência nos momentos mais baixos.
-3.  Estocar comida para desafios econômicos. Ter comida guardada não é útil apenas para se preparar contra grandes desastres. 
-É também uma ótima forma de superar os tempos difíceis que a vida pode jogar em você. Desde perder o trabalho até outros 
-problemas financeiros que podem aparecer, ter um bom suprimento de comida vai ajudá-lo a sair-se bem em uma situação ruim.','2025-04-24'),
-('1', 'Como estocar grãos?', 
-'Primeiro passo: Higienização; Segundo passo: Inserção do alho e grãos; Terceiro passo: Compactação de grãos','2025-04-25'),
-('1','Quais os principais alimentos?', ''
-,'2025-02-08'),
-('2', 'Como fazer um curativo?', 
-'','2025-03-04'),
-('2', 'Como desengasgar outra pessoa?',
- '','2025-03-07'),
-('3', 'Como fazer uma fogueira?', 
-'','2025-03-10'),
-('3', 'Como se orientar pelas estrelas?',
- '','2025-03-10'),
-('3', 'Como usar uma bússola?', 
-'','2025-03-12'),
-('3', 'Como fazer um abrigo?', 
-'','2025-03-12');
 
 INSERT INTO `estoque` (produto_idProduto, peso, volume, unidade, dataValidade, dataEstoque, obsEstoque, status) VALUES
 ('1', 4.5, null, null, '2026-06-07', '2025-04-07', 'Estocado em embalagem padrão.', '1'),
@@ -108,12 +77,19 @@ INSERT INTO `estoque` (produto_idProduto, peso, volume, unidade, dataValidade, d
 ('26', 2, null, null, '2027-02-05', '2025-04-20', null, '1'),
 ('31', 7, null, null, '2026-03-7', '2025-04-20', null, '1');
 
+INSERT INTO `secaoDica` (tituloSecaoDica, obsSecaoDica) VALUES 
+('Estocagem', 'Dicas sobre o quê estocar e como fazer isso.'),
+('Limpeza', 'Dicas para Limpeza pessoal e residencial.'),
+('Primeiros socorros', 'Tutoriais de primeiros socorros.'),
+('BOB', 'Dicas sobre quais itens são essencias numa B.O.B');
+
+
+-- verificar por que os inserts abaixo dão erro
+-- Erro 1452
 
 INSERT INTO `usuario_has_secao` (usuario_idUsuario, secaoProduto_idSecaoProduto, secaoDica_idSecaoDica) VALUES
 (1, 1, 1), (1, 2, 2), (1, 3, 3), (1, 4, 1), 
 (2, 1, 1), (2, 1, 2), (2, 4, 3),
-(3, 1, 1), (3, 1, 2), (3, 4, 3), 
+(3, 1, 1), (3, 1, 2), (3, 4, 3),
 (4, 1, 1), (4, 1, 2), (4, 4, 3);
-
-
 
