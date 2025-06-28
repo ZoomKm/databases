@@ -1,6 +1,6 @@
-drop DATABASE	`estoque_sos`;
-CREATE DATABASE	`estoque_sos`;
-USE `estoque_sos`;
+drop DATABASE	`estoqueV2`;
+CREATE DATABASE	`estoqueV2`;
+USE `estoqueV2`;
 
 
 CREATE TABLE `usuario` (
@@ -13,18 +13,11 @@ CREATE TABLE `usuario` (
 );
 
 
-CREATE TABLE `secaoProduto` (
-	idSecaoProduto INT PRIMARY KEY AUTO_INCREMENT,
-	tituloSecaoProduto VARCHAR(20) NOT NULL,
-    obsSecaoProduto VARCHAR(200)
-);
-
 CREATE TABLE `subSecaoProduto` (
 	idSubSecaoProduto INT PRIMARY KEY AUTO_INCREMENT,
     secaoProduto_idSecaoProduto INT NOT NULL,
 	tituloSubSecao VARCHAR(20) NOT NULL,
-    obsSubSecao VARCHAR(200),
-    FOREIGN KEY (secaoProduto_idSecaoProduto) REFERENCES secaoProduto(idSecaoProduto)
+    obsSubSecao VARCHAR(200)
 );
 
 CREATE TABLE `produto` (
@@ -32,9 +25,9 @@ CREATE TABLE `produto` (
     subSecaoProduto_idSubSecaoProduto INT NOT NULL,
 	nomeProduto VARCHAR(40) NOT NULL,
     tipoMedida VARCHAR(7) NOT NULL,
-    obsProduto VARCHAR(200),
-    FOREIGN KEY (subSecaoProduto_idSubSecaoProduto) REFERENCES subSecaoProduto(idSubSecaoProduto),
-    CONSTRAINT tipoMedida CHECK (tipoMedida IN ('peso', 'volume', 'unidade'))
+    obsProduto VARCHAR(200),    
+    CONSTRAINT tipoMedida CHECK (tipoMedida IN ('peso', 'volume', 'unidade')),
+    FOREIGN KEY (subSecaoProduto_idSubSecaoProduto) REFERENCES subSecaoProduto(idSubSecaoProduto)
 );
 
 CREATE TABLE `estoque` (
@@ -51,19 +44,11 @@ CREATE TABLE `estoque` (
 );
 
 
-CREATE TABLE `secaoDica` (
-	idSecaoDica INT PRIMARY KEY AUTO_INCREMENT,
-	tituloSecaoDica VARCHAR(20) NOT NULL,
-    obsSecaoDica VARCHAR(400)
-);
-
-
 CREATE TABLE `subSecaoDica` (
 	idSubSecaoDica INT PRIMARY KEY AUTO_INCREMENT,
     secaoDica_idSecaoDica INT NOT NULL,
 	tituloSubSecao VARCHAR(20) NOT NULL,
-    obsSubSecao VARCHAR(200),
-    FOREIGN KEY (secaoDica_idSecaoDica) REFERENCES secaoDica(idSecaoDica)
+    obsSubSecao VARCHAR(200)
 );
 
 
@@ -77,12 +62,12 @@ CREATE TABLE `dica` (
 );
 
 
-CREATE TABLE `usuario_has_secao` (
+CREATE TABLE `usuario_has_subSecao` (
 	usuario_idUsuario INT NOT NULL,
-	secaoProduto_idSecaoProduto INT NOT NULL,
-	secaoDica_idSecaoDica INT NOT NULL,
+	subSecaoProduto_idSubSecaoProduto INT NOT NULL,
+	subSecaoDica_idSubSecaoDica INT NOT NULL,
     
 	FOREIGN KEY (usuario_idUsuario) REFERENCES usuario(idUsuario),
-    FOREIGN KEY (secaoProduto_idSecaoProduto) REFERENCES secaoProduto(idSecaoProduto),
-	FOREIGN KEY (secaoDica_idSecaoDica) REFERENCES secaoDica(idSecaoDica)
+    FOREIGN KEY (subSecaoProduto_idSubSecaoProduto) REFERENCES subSecaoProduto(idSubSecaoProduto),
+	FOREIGN KEY (subSecaoDica_idSubSecaoDica) REFERENCES subSecaoDica(idSubSecaoDica)
 );
