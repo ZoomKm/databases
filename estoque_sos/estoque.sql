@@ -15,7 +15,7 @@ CREATE TABLE `usuario` (
 
 CREATE TABLE `subSecaoProduto` (
 	idSubSecaoProduto INT PRIMARY KEY AUTO_INCREMENT,
-    secaoProduto_idSecaoProduto INT NOT NULL,
+    tituloSecao VARCHAR(45) NOT NULL,
 	tituloSubSecao VARCHAR(20) NOT NULL,
     obsSubSecao VARCHAR(200)
 );
@@ -46,7 +46,7 @@ CREATE TABLE `estoque` (
 
 CREATE TABLE `subSecaoDica` (
 	idSubSecaoDica INT PRIMARY KEY AUTO_INCREMENT,
-    secaoDica_idSecaoDica INT NOT NULL,
+    tituloSecao VARCHAR(45) NOT NULL,
 	tituloSubSecao VARCHAR(20) NOT NULL,
     obsSubSecao VARCHAR(200)
 );
