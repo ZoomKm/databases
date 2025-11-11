@@ -1,3 +1,4 @@
+
 DROP database exemplo_senac;
 CREATE database exemplo_senac;
 USE exemplo_senac;
