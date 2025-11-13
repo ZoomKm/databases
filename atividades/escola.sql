@@ -9,3 +9,6 @@ create table alunos(
     PRIMARY KEY (id)
 );
 
+SELECT * FROM alunos;
+
+
