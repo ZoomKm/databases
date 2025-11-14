@@ -1,3 +1,4 @@
+DROP DATABASE escola;
 CREATE DATABASE escola;
 
 USE escola;
@@ -9,6 +10,5 @@ create table alunos(
     PRIMARY KEY (id)
 );
 
+
 SELECT * FROM alunos;
-
-
