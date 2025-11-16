@@ -1,0 +1,4 @@
+DROP DATABASE IF EXISTS teste;
+
+CREATE DATABASE teste;
+USE teste;
