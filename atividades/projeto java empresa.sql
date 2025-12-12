@@ -9,4 +9,5 @@ CREATE TABLE `empresa` (
 PRIMARY KEY (id)
 );
 
+USE exemplojavabd;
 select * from empresa;
