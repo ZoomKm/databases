@@ -28,3 +28,5 @@ use Financas;
     
 use financas;
 select * from conta;
+select * from despesa;
+select * from receita;
