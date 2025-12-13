@@ -1,4 +1,3 @@
-drop database audioflix;
 create database audioflix;
 
 
@@ -24,9 +23,9 @@ CREATE TABLE usuario (
 
 -- Dados exemplos TABELA usuario
 INSERT INTO usuario (nome, login, senha, tipo) VALUES 
-('ZoomKm', 'admin@mail.com', md5('123'), 'Admin'),
-('Henrique', 'henrique@mail.com', md5('123'), 'Operador'),
-('luis', 'luis@mail.com', md5('123'), 'Usuario');                                
+('Admin', 'admin@mail.com', md5('123'), 'Admin'),
+('Operador', 'operador@mail.com', md5('123'), 'Operador'),
+('Usuario', 'usuario@mail.com', md5('123'), 'Usuario');                                
 
 -- Dados exemplos TABELA podcast
 INSERT INTO podcast (produtor, nomeepisodio, numeroepisodio, duracao, url) VALUES 
