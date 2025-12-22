@@ -1,6 +1,6 @@
-DROP DATABASE estoque_sos;
-CREATE DATABASE estoque_sos;
-USE estoque_sos;
+DROP DATABASE estoque_sos000;
+CREATE DATABASE estoque_sos000;
+USE estoque_sos000;
 
 --  (Gestão de Acessos)
 CREATE TABLE USUARIO (
@@ -32,9 +32,9 @@ CREATE TABLE TUTORIAL (
 -- Inserção de dados para a tabela USUARIO
 
 INSERT INTO USUARIO (nome, senha, categoria) VALUES
-('ParentMaster', '123456', 'PARENT'),
-('ChildUser', '123', 'CHILD'),
-('admin', 'JFK2020pmw', 'PARENT');
+('ParentMaster', md5('123456'), 'PARENT'),
+('ChildUser', md5('123'), 'CHILD'),
+('admin', md5('123'), 'PARENT');
 
 -- Verificação:
 SELECT * FROM USUARIO;
