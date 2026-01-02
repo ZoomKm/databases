@@ -1,4 +1,4 @@
-DROP DATABASE estoque_sos;
+
 CREATE DATABASE estoque_sos;
 USE estoque_sos;
 
